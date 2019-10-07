@@ -202,7 +202,7 @@
  
     // 繰り返し実行する処理
     function timer(){  
-        if (active) {
+        if (active == true) {
         var time = parseInt( (new Date() - startTime)/1000 );
         var rest = period - time;
         $("#time").html("経過時間： " + time);
