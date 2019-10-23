@@ -179,7 +179,7 @@
     // ButtonAがクリックされた時の処理
     function btnAClick(e){
         active = true;
-        startTime = new Data();
+        startTime = new Date();
         
     }
 
@@ -193,7 +193,7 @@
     function btnCClick(e){
         alarm();
         active = false;
-        period = 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
+        period = 3600* parseInt( $("#hour").val() ) + 60* parseInt( $("#minute").val() ) + parseInt( $("#second").val() );
          $("#time").html("経過時間： 0");
         $("#remain").html("残り時間： " + period);
         
@@ -205,8 +205,11 @@
         if (active == true) {
         var time = parseInt( (new Date() - startTime)/1000 );
         var rest = period - time;
+        var h = parseInt(rest/3600);
+        var m = parseInt(rest%3600/60);
+        var s = parseInt(rest%3600%60);
         $("#time").html("経過時間： " + time);
-        $("#remain").html("残り時間： " + rest);
+        $("#remain").html("残り時間： " + h + "時" + m + "分" + s + "秒");
         analog(rest);
         }
         if(rest == 0){
@@ -228,6 +231,7 @@
     <button id="btnA">ButtonA</button>  
     <button id="btnB">ButtonB</button>  
     <button id="btnC">ButtonC</button>  
+    <input type="number" id="hour" value=0 >
     <input type="number" id="minute" value=3 >
     <input type="number" id="second" value=0 >
 </body>
